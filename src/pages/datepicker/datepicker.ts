@@ -18,12 +18,21 @@ export class DatepickerPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
   initializeDatePicker(){
-  this.create_datepicker=new Datepickk({
-    container: document.getElementById('sampleContainer'),
-    inline: true,
-    range: true,
-    // highlight: [highlight,highlight2]
-  });
+    let mainDatePickerInsatnce = (<any>window).datePickerIndex;
+    this.create_datepicker=mainDatePickerInsatnce.Intialize(
+      {
+        container: document.getElementById('sampleContainer'),
+        inline: true,
+        range: true,
+        // highlight: [highlight,highlight2]
+      }
+    );
+  // this.create_datepicker=new Datepickk({
+  //   container: document.getElementById('sampleContainer'),
+  //   inline: true,
+  //   range: true,
+  //   // highlight: [highlight,highlight2]
+  // });
     this.create_datepicker.setDate = new Date(2015,6,1);
   }
 
