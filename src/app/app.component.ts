@@ -1,3 +1,4 @@
+import { NewtimepickerPage } from './../pages/newtimepicker/newtimepicker';
 import { TimepickerPage } from './../pages/timepicker/timepicker';
 import { DatepickerPage } from './../pages/datepicker/datepicker';
 import { Component, ViewChild } from '@angular/core';
@@ -49,7 +50,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.rootPage= TimepickerPage;
+      this.rootPage= NewtimepickerPage;
     });
     this.initTranslate();
   }

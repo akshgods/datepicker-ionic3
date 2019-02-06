@@ -1,3 +1,4 @@
+import { NewtimepickerPage } from './../pages/newtimepicker/newtimepicker';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -40,7 +41,8 @@ export function provideSettings(storage: Storage) {
   declarations: [
     MyApp,
     DatepickerPage,
-    TimepickerPage
+    TimepickerPage,
+    NewtimepickerPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ export function provideSettings(storage: Storage) {
   entryComponents: [
     MyApp,
     DatepickerPage,
-    TimepickerPage
+    TimepickerPage,
+    NewtimepickerPage
   ],
   providers: [
     Api,
