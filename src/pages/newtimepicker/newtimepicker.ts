@@ -19,42 +19,52 @@ export class NewtimepickerPage {
   }
 
   ionViewDidLoad() {
-    this.showTimePicker();
+    // this.showTimePicker();
+    this.TimePicker.showTimePicker();
   }
-  showTimePicker(){
-    this.timeinstance= this.initTimePicker('','',1,'en');
+
+
+TimePicker={
+  showTimePicker:()=>{
+    this.timeinstance= this.TimePicker.initTimePicker('','',15,'en');//initialise time picker
     this.timeinstance.unbind('change').change(()=>{
-     this.selectedTimeDate();
+     this.TimePicker.selectedTimeDate();
     });
-  }
-  addMinutes(minutes) {
-    return new Date((new Date()).getTime() + minutes*60000);
-}
-  setDate(dateTime){
-    let mobitimescroll = (<any>window).mobiScrollTime;
-    mobitimescroll.setDate(dateTime);
-  }
-  private selectedTimeDate(){
-    let datetime = this.getTimeDate();
-    console.log('datetime2: ',datetime);
-  }
-  private initTimePicker(mintime='',maxtime='',stepMinute=1,langCode='en'){
+  },
+  selectedTimeDate:()=>{
+      let datetime = this.TimePicker.getTimeDate();
+      console.log('datetime2: ',datetime);
+  },
+  setDate:(dateTime)=>{
+      let mobitimescroll = (<any>window).mobiScrollTime;
+      mobitimescroll.setDate(dateTime);
+  },
+  initTimePicker:(mintime='',maxtime='',stepMinute=15,langCode='en')=>{
+      let mobitimescroll = (<any>window).mobiScrollTime;
+      mobitimescroll.destroy();
+      return mobitimescroll.init(mintime,maxtime,stepMinute,langCode);
+  },
+  getTimeDate:()=>{
+      let mobitimescroll = (<any>window).mobiScrollTime;
+      let timeinst =  mobitimescroll.instance('getDate');
+      console.log('timeinst: ',timeinst);
+      console.log('timeinst toLocaleTimeString: ',timeinst.toLocaleTimeString());
+      // let date = moment(dateinst).format('YYYY-MM-DD');
+      // console.log('date: ',date);
+      // let time = moment(timeinst).format('hh:mm A');
+      // console.log('time: ',time);
+      // return date+' '+time;
+      return timeinst;
+  },
+  destroy:()=>{
     let mobitimescroll = (<any>window).mobiScrollTime;
     mobitimescroll.destroy();
-    return mobitimescroll.init(mintime,maxtime,stepMinute,langCode);
   }
-  private getTimeDate(){
-    let mobitimescroll = (<any>window).mobiScrollTime;
-    let timeinst =  mobitimescroll.instance('getDate');
-    console.log('timeinst: ',timeinst);
-    console.log('timeinst toLocaleTimeString: ',timeinst.toLocaleTimeString());
-     // let date = moment(dateinst).format('YYYY-MM-DD');
-    // console.log('date: ',date);
-    // let time = moment(timeinst).format('hh:mm A');
-    // console.log('time: ',time);
-    // return date+' '+time;
+}
 
-return timeinst;
-   
-  }
+  addMinutes(minutes) {
+    //add minutes to date
+    return new Date((new Date()).getTime() + minutes*60000);
+}
+
 }
