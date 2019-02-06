@@ -1,3 +1,4 @@
+import { TimepickerPage } from './../pages/timepicker/timepicker';
 import { DatepickerPage } from './../pages/datepicker/datepicker';
 import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -48,7 +49,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.rootPage= DatepickerPage;
+      this.rootPage= TimepickerPage;
     });
     this.initTranslate();
   }

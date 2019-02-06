@@ -13,6 +13,7 @@ import { Items } from '../mocks/providers/items';
 import { Settings, User, Api } from '../providers';
 import { MyApp } from './app.component';
 import { DatepickerPage } from '../pages/datepicker/datepicker';
+import { TimepickerPage } from '../pages/timepicker/timepicker';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -38,7 +39,8 @@ export function provideSettings(storage: Storage) {
 @NgModule({
   declarations: [
     MyApp,
-    DatepickerPage
+    DatepickerPage,
+    TimepickerPage
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ export function provideSettings(storage: Storage) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    DatepickerPage
+    DatepickerPage,
+    TimepickerPage
   ],
   providers: [
     Api,

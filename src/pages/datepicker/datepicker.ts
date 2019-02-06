@@ -1,3 +1,4 @@
+import { TimepickerPage } from './../timepicker/timepicker';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 declare var datepicker:any;
@@ -43,5 +44,6 @@ export class DatepickerPage {
   }
   _taskDate(){
     console.log('datepicker: ',this.create_datepicker.selectedDates);
+    this.navCtrl.push(TimepickerPage);
   }
 }

@@ -28,14 +28,19 @@
   </script>-->
 
   <link href="build/main.css" rel="stylesheet">
+  <link href="assets/js/mobiscroll/mobiscroll.custom-2.6.2.min.css" rel="stylesheet">
+
   <!-- <link href="/src/assets/dist/datepickk.css" type="text/css" rel="stylesheet"> -->
   <!-- <link href="assets/dist/datepickk.css" rel="stylesheet"> -->
+  <script type="application/javascript" src="assets/js/jquery-2.2.3.min.js"></script>
+  <script type="application/javascript" src="assets/js/mobiscroll/mobiscroll.js"></script>
 
 </head>
 <body>
 
   <!-- Ionic's root component and where the app will load -->
   <ion-app></ion-app>
+
   <!-- <div id="datepicker"></div> -->
   <!-- The polyfills js is generated during the build process -->
   <script src="build/polyfills.js"></script>
@@ -46,6 +51,7 @@
 
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
+  
 	<script src="assets/dist/datepickk.js"></script>
 <script>
   window.datePickerIndex = {};
@@ -90,3 +96,73 @@ datePickerIndex.Intialize=function(args){
 </script>
 </body>
 </html>
+
+<script type="text/javascript">
+
+  window.mobiscroll = {};
+  mobiscroll.instance = function(par){
+    return $("#date").mobiscroll(par);
+  }
+  
+  mobiscroll.init = (currdate,closedate)=>{
+    mobi_instance = $("#date").mobiscroll().date({
+      preset: 'date', // datetime,time,tree_list,image_text,select
+      theme: 'android-ics light', //皮肤【android-ics light】【android-ics】【ios】【jqm】...
+      mode: "scroller",//操作方式【scroller】【clickpick】【mixed】
+      lang: 'en', // hu,de,es,fr,it,no,pt-BR,nl,tr,ja
+      display: 'inline', //显示方【modal】【inline】【bubble】【top】【bottom】
+      setText: 'Fijar',
+      cancelText: 'Cancelar',
+      dateFormat: 'yyyy-mm-dd',
+      dateOrder: 'yyMMdd',
+      minDate: currdate,
+      maxDate: closedate,
+      showNow: true,
+      showOnFocus: true,
+      rows: 3
+    });
+    return mobi_instance;
+  }
+  mobiscroll.destroy = function(){
+    $('#date').scroller('destroy');
+  }
+  
+  window.mobiScrollTime = {};
+  mobiScrollTime.instance = function(par){
+    return $("#time").mobiscroll(par);
+  }
+  mobiScrollTime.update = function(par,dateObj){
+    $("#time").mobiscroll(par,dateObj,true);
+  }
+  mobiscroll.setDate=function(currdate){
+    $('#date').mobiscroll('setDate',currdate).change();
+  }
+  mobiScrollTime.init = function(mintime,maxtime,stepMinute,langCode,datechange){
+    var mobitime_instance = $('#time').mobiscroll().time({
+      preset: 'time',
+      minDate: mintime,
+      maxDate: maxtime,
+      theme: 'android-ics light',
+      mode: "scroller",
+      lang: langCode,
+      display: 'inline',
+      showOnFocus: true,
+      rows: 3,
+      timeWheels: 'hhiiA',
+      timeFormat: 'hh:ii A',
+      showNow: true,
+      stepMinute: stepMinute
+    });
+    if(datechange)
+    window.mobiScrollTime.update('setDate',new Date(0, 0, 0, 0, 0, 0, 0));
+    return mobitime_instance;
+  }
+  mobiScrollTime.destroy = function(){
+    $('#time').scroller('destroy');
+  }
+    $(".android-ics.light.dw-inline.dw-webkit").hide();
+  </script>
+  <style type="text/css">
+    div.android-ics.light.dw-inline.dw-webkit:nth-child(2){position: absolute;top: 30%;}
+    div.android-ics.light.dw-inline.dw-webkit{position: absolute;top: 50%;}
+  </style>
